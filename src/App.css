@@ -36,3 +36,35 @@ input, select {
 label {
   font-size: 20px;
 }
+
+.currency-info {
+  padding: 20px;
+  width: 100%;
+  border: 2px solid sandybrown;
+  background-color: burlywood;
+}
+
+.currency-info__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+.currency-info__header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+hr {
+  margin-bottom: 20px;
+}
+
+.currency-info__item {
+  padding: 10px;
+  border: 2px solid salmon;
+  border-radius: 10px;
+  background-color: lightblue;
+  font-size: 20px;
+
+}
