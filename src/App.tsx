@@ -20,11 +20,15 @@ function App() {
 
   if (targetRate > 0) {
     if (amountInFromCurrency) {
-      fromAmount = Number(numericAmount.toFixed(2));
-      toAmount = Number((numericAmount * targetRate).toFixed(2));
+      // fromAmount = Number(numericAmount.toFixed(2));
+      // toAmount = Number((numericAmount * targetRate).toFixed(2));
+      fromAmount = Number(numericAmount);
+      toAmount = Number(numericAmount * targetRate);
     } else {
-      toAmount = Number(numericAmount.toFixed(2));
-      fromAmount = Number((numericAmount / targetRate).toFixed(2));
+      // toAmount = Number(numericAmount.toFixed(2));
+      // fromAmount = Number((numericAmount / targetRate).toFixed(2));
+      toAmount = Number(numericAmount);
+      fromAmount = Number(numericAmount / targetRate);
     }
   }
 
@@ -43,7 +47,7 @@ function App() {
         if (data.result == 'success') {
           setRates(data.conversion_rates);
           setCurrencyList([...Object.keys(data.conversion_rates)]);
-        } else {
+        } else { 
           throw new Error(data['error-type'] || 'Unknown error');
         }
       })
@@ -76,23 +80,26 @@ function App() {
       <h1>Currency Converter</h1>
       <div className='converter-box'>
         <div className='converter-box__calculator'>
-          <input type="number" value={focusedInput === 'from' ? fromAmount : Number(fromAmount).toFixed(2)} onChange={handleFromAmountChange} placeholder='From...' min={0} onFocus={() => setFocusedInput('from')} onBlur={() => setFocusedInput(null)}/>
-          <select value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
-            {currencyList.map((code) => 
-              <option value={code} key={code}>{code}</option>
-            )}
-          </select>
-
-          <strong> = </strong>
-
-          <input type="number" value={focusedInput === 'to' ? toAmount : Number(toAmount).toFixed(2)} onChange={handleToAmountChange} placeholder='To...' min={0} onFocus={() => setFocusedInput('to')} onBlur={() => setFocusedInput(null)}/>
-          <select value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
-            {currencyList.map((code) => {
-              console.log(code);
-              return <option value={code} key={code}>{code}</option>
-            }
-            )}
-          </select>
+          <div className='converter-box__form'>
+            <input type="number" value={fromAmount} onChange={handleFromAmountChange} placeholder='From...' />
+            {/* <input type="number" value={focusedInput === 'from' ? fromAmount : Number(fromAmount).toFixed(2)} onChange={handleFromAmountChange} placeholder='From...' min={0} onFocus={() => setFocusedInput('from')} onBlur={() => setFocusedInput(null)}/> */}
+            <select value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
+              {currencyList.map((code) => 
+                <option value={code} key={code}>{code}</option>
+              )}
+            </select>
+          </div>
+          <div className='converter-box__form'>
+          <input type="number" value={toAmount} onChange={handleToAmountChange} placeholder='To...'/>
+          {/* <input type="number" value={focusedInput === 'to' ? toAmount : Number(toAmount).toFixed(2)} onChange={handleToAmountChange} placeholder='To...' min={0} onFocus={() => setFocusedInput('to')} onBlur={() => setFocusedInput(null)}/> */}
+            <select value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
+              {currencyList.map((code) => {
+                console.log(code);
+                return <option value={code} key={code}>{code}</option>
+              }
+              )}
+            </select>
+          </div>
         </div>
         <div className='converter-box__checkbox'>
           <label>

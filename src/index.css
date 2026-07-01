@@ -11,9 +11,10 @@ input[type="checkbox"] {
 }
 
 :root {
-  --primary-color: #1E40Af;
-  --secondary-color: #D1D5DB;
+  --primary-color: #a8daf1;
+  --secondary-color: #94cff1;
   --text-color: #F3F4F6;
+  --border-color: #067483;
 }
 
 body {
